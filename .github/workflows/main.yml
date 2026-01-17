@@ -1,15 +1,37 @@
-name: Build and Push Docker Image
+name: CI/CD - Blog Tech 2
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+  docker:
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: ${{ secrets.DATABASE_NAME }}
+          POSTGRES_USER: ${{ secrets.DATABASE_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U ${{ secrets.DATABASE_USER }} -d ${{ secrets.DATABASE_NAME }}"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=5
+
     env:
+      PORT: 3000
+      ENV: development
+      DATABASE_USER: ${{ secrets.DATABASE_USER }}
+      DATABASE_HOST: postgres
+      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      DATABASE_PORT: 5432
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -20,5 +42,5 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build -t $DOCKER_USERNAME/petech-stock:latest --build-arg MONGO_URI=${{ secrets.DATABASE_URL }} --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} .
-          docker push $DOCKER_USERNAME/petech-stock:latest
+          docker build -t $DOCKER_USERNAME/blog-tech2:latest --build .
+          docker push $DOCKER_USERNAME/blog-tech2:latest
