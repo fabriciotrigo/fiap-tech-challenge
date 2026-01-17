@@ -43,5 +43,5 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build -t $DOCKER_USERNAME/blog-tech2:latest --build .
+          docker build -t $DOCKER_USERNAME/blog-tech2:latest .
           docker push $DOCKER_USERNAME/blog-tech2:latest
