@@ -1,9 +1,9 @@
-name: Build and Push Docker Image - teste
+name: Build and Push Docker Image
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
