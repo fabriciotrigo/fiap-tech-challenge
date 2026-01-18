@@ -10,6 +10,17 @@ jobs:
   docker:
     runs-on: ubuntu-latest
 
+    env:
+      PORT: 3000
+      ENV: development
+      DATABASE_USER: ${{ secrets.DATABASE_USER }}
+      DATABASE_HOST: postgres
+      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      DATABASE_PORT: 5432
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
