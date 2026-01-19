@@ -24,6 +24,10 @@ __export(postagem_entity_exports, {
 });
 module.exports = __toCommonJS(postagem_entity_exports);
 var Postagem = class {
+  id;
+  texto_postagem;
+  disciplina;
+  autor;
   constructor(texto_postagem, disciplina, autor) {
     this.texto_postagem = texto_postagem;
     this.disciplina = disciplina;

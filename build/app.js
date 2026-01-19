@@ -33,7 +33,10 @@ __export(app_exports, {
   app: () => app
 });
 module.exports = __toCommonJS(app_exports);
-var import_fastify = __toESM(require("fastify"));
+var import_swagger = require("@fastify/swagger");
+var import_swagger_ui = require("@fastify/swagger-ui");
+var import_fastify = require("fastify");
+var import_fastify_type_provider_zod = require("fastify-type-provider-zod");
 
 // src/http/controllers/postagem/create.ts
 var import_zod2 = require("zod");
@@ -69,6 +72,8 @@ var CONFIG = {
   port: env.DATABASE_PORT
 };
 var Database = class {
+  pool;
+  client;
   constructor() {
     this.pool = new import_pg.Pool(CONFIG);
     this.connection();
@@ -314,22 +319,99 @@ async function update(request, reply) {
 }
 
 // src/http/controllers/postagem/routes.ts
+var import_zod7 = require("zod");
 async function postagemRoutes(app2) {
-  app2.get("/postagem/:id", findById);
-  app2.get("/postagem", findAll);
-  app2.get("/postagem/search", search);
-  app2.post("/postagem", create);
-  app2.delete("/postagem/:id", deleteById);
-  app2.put("/postagem/:id", update);
+  const postagemResponseSchema = import_zod7.z.object({
+    id: import_zod7.z.coerce.number(),
+    texto_postagem: import_zod7.z.string(),
+    disciplina: import_zod7.z.string(),
+    autor: import_zod7.z.string()
+  });
+  app2.get("/postagem/:id", {
+    schema: {
+      description: "Busca postagem por ID",
+      tags: ["Postagem"],
+      params: import_zod7.z.object({
+        id: import_zod7.z.coerce.number()
+      }),
+      response: {
+        200: postagemResponseSchema
+      }
+    }
+  }, findById);
+  app2.get("/postagem", {
+    schema: {
+      description: "Lista todas as postagens",
+      tags: ["Postagem"],
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, findAll);
+  app2.get("/postagem/search", {
+    schema: {
+      description: "Busca postagem por texto",
+      tags: ["Postagem"],
+      querystring: import_zod7.z.object({
+        q: import_zod7.z.string().min(1, "Informe um texto para busca")
+      }),
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, search);
+  app2.post("/postagem", {
+    schema: {
+      description: "Cria uma nova postagem",
+      tags: ["Postagem"],
+      body: import_zod7.z.object({
+        texto_postagem: import_zod7.z.string(),
+        disciplina: import_zod7.z.string(),
+        autor: import_zod7.z.string()
+      }),
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, create);
+  app2.delete("/postagem/:id", {
+    schema: {
+      description: "Busca postagem por ID",
+      tags: ["Postagem"],
+      params: import_zod7.z.object({
+        id: import_zod7.z.coerce.number()
+      }),
+      response: {
+        204: import_zod7.z.undefined()
+      }
+    }
+  }, deleteById);
+  app2.put("/postagem/:id", {
+    schema: {
+      description: "Atualiza postagem",
+      tags: ["Postagem"],
+      params: import_zod7.z.object({
+        id: import_zod7.z.coerce.number()
+      }),
+      body: import_zod7.z.object({
+        texto_postagem: import_zod7.z.string(),
+        disciplina: import_zod7.z.string(),
+        autor: import_zod7.z.string()
+      }),
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, update);
 }
 
 // src/utils/global-error-handler.ts
-var import_zod7 = require("zod");
+var import_zod8 = require("zod");
 var errorHandlerMap = {
   ZodError: (error, _, reply) => {
     return reply.status(400).send({
       message: "Validation error",
-      ...error instanceof import_zod7.ZodError && { error: error.format() }
+      ...error instanceof import_zod8.ZodError && { error: error.format() }
     });
   },
   ResourceNotFoundError: (error, __, reply) => {
@@ -346,7 +428,22 @@ var globalErrorHandler = (error, _, reply) => {
 };
 
 // src/app.ts
-var app = (0, import_fastify.default)();
+var app = (0, import_fastify.fastify)().withTypeProvider();
+app.setValidatorCompiler(import_fastify_type_provider_zod.validatorCompiler);
+app.setSerializerCompiler(import_fastify_type_provider_zod.serializerCompiler);
+app.register(import_swagger.fastifySwagger, {
+  openapi: {
+    info: {
+      title: "API de Exemplo",
+      description: "Documenta\xE7\xE3o da API de exemplo utilizando Fastify",
+      version: "1.0.0"
+    }
+  },
+  transform: import_fastify_type_provider_zod.jsonSchemaTransform
+});
+app.register(import_swagger_ui.fastifySwaggerUi, {
+  routePrefix: "/docs"
+});
 app.register(postagemRoutes);
 app.setErrorHandler(globalErrorHandler);
 // Annotate the CommonJS export names for ESM import in node:

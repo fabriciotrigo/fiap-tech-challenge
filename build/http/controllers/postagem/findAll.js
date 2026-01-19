@@ -55,6 +55,8 @@ var CONFIG = {
   port: env.DATABASE_PORT
 };
 var Database = class {
+  pool;
+  client;
   constructor() {
     this.pool = new import_pg.Pool(CONFIG);
     this.connection();

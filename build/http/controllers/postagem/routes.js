@@ -68,6 +68,8 @@ var CONFIG = {
   port: env.DATABASE_PORT
 };
 var Database = class {
+  pool;
+  client;
   constructor() {
     this.pool = new import_pg.Pool(CONFIG);
     this.connection();
@@ -313,13 +315,90 @@ async function update(request, reply) {
 }
 
 // src/http/controllers/postagem/routes.ts
+var import_zod7 = require("zod");
 async function postagemRoutes(app) {
-  app.get("/postagem/:id", findById);
-  app.get("/postagem", findAll);
-  app.get("/postagem/search", search);
-  app.post("/postagem", create);
-  app.delete("/postagem/:id", deleteById);
-  app.put("/postagem/:id", update);
+  const postagemResponseSchema = import_zod7.z.object({
+    id: import_zod7.z.coerce.number(),
+    texto_postagem: import_zod7.z.string(),
+    disciplina: import_zod7.z.string(),
+    autor: import_zod7.z.string()
+  });
+  app.get("/postagem/:id", {
+    schema: {
+      description: "Busca postagem por ID",
+      tags: ["Postagem"],
+      params: import_zod7.z.object({
+        id: import_zod7.z.coerce.number()
+      }),
+      response: {
+        200: postagemResponseSchema
+      }
+    }
+  }, findById);
+  app.get("/postagem", {
+    schema: {
+      description: "Lista todas as postagens",
+      tags: ["Postagem"],
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, findAll);
+  app.get("/postagem/search", {
+    schema: {
+      description: "Busca postagem por texto",
+      tags: ["Postagem"],
+      querystring: import_zod7.z.object({
+        q: import_zod7.z.string().min(1, "Informe um texto para busca")
+      }),
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, search);
+  app.post("/postagem", {
+    schema: {
+      description: "Cria uma nova postagem",
+      tags: ["Postagem"],
+      body: import_zod7.z.object({
+        texto_postagem: import_zod7.z.string(),
+        disciplina: import_zod7.z.string(),
+        autor: import_zod7.z.string()
+      }),
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, create);
+  app.delete("/postagem/:id", {
+    schema: {
+      description: "Busca postagem por ID",
+      tags: ["Postagem"],
+      params: import_zod7.z.object({
+        id: import_zod7.z.coerce.number()
+      }),
+      response: {
+        204: import_zod7.z.undefined()
+      }
+    }
+  }, deleteById);
+  app.put("/postagem/:id", {
+    schema: {
+      description: "Atualiza postagem",
+      tags: ["Postagem"],
+      params: import_zod7.z.object({
+        id: import_zod7.z.coerce.number()
+      }),
+      body: import_zod7.z.object({
+        texto_postagem: import_zod7.z.string(),
+        disciplina: import_zod7.z.string(),
+        autor: import_zod7.z.string()
+      }),
+      response: {
+        200: import_zod7.z.array(postagemResponseSchema)
+      }
+    }
+  }, update);
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
