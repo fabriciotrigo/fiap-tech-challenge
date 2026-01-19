@@ -13,8 +13,8 @@ app.setSerializerCompiler(serializerCompiler);
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'API de Exemplo',
-      description: 'Documentação da API de exemplo utilizando Fastify',
+      title: 'API - Blog Educacional',
+      description: 'Documentação da API do Blog Educacionale - Tech Challenge 2',
       version: '1.0.0',
     },
   },
