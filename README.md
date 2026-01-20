@@ -23,19 +23,25 @@ O projeto foi criado com foco em boas práticas de arquitetura, containerizaçã
 
 ## 📁 Estrutura do Projeto
 .
-├── docker/
-│   └── init.sql
-├── src/
-│   ├── env/
-│   │   └── index.ts
-│   ├── server.ts
-│   └── database.ts
-├── build/
-├── Dockerfile
-├── docker-compose.yml
-├── package.json
-├── tsconfig.json
-└── README.md
+├── .github/
+|   └── workflows/  
+│       └── main.yml  
+├── src/  
+│   ├── entities/  
+|   ├── env/  
+│   ├── http/  
+│   │   └── controllers/   
+│   ├── lib/  
+|   ├── respositories/  
+|   ├── use-cases/  
+|   ├── utils/  
+|   ├── app.ts
+│   └── server.ts  
+├── Dockerfile  
+├── docker-compose.yml  
+├── package.json  
+├── tsconfig.json  
+└── README.md  
 
 ⚙️ Variáveis de Ambiente
 Crie um arquivo .env na raiz do projeto:
@@ -106,8 +112,8 @@ Healthcheck no banco
 CI/CD automatizado
 
 👨‍💻 Autor
-Fabrício Trigo
+Fabrício Boschette Trigo
 
-GitHub: https://github.com/seu-usuario
+GitHub: https://github.com/fabriciotrigo/fiap-tech-challenge  
 
-Docker Hub: https://hub.docker.com/u/seu-usuario
+Docker Hub: https://hub.docker.com/repositories/fabriciotrigo  
