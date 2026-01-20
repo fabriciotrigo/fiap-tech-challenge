@@ -134,11 +134,12 @@ npm run dev
 
 #### ⚙️ Scripts Disponíveis
 
-| Script | Comando       | Descrição                         |
-| ------ | ------------- | ----------------------------------|
-| dev    | npm run dev   | Executa em modo desenvolvimento   |
-| build  | npm run build | Transpila o projeto para produção |
-| start  | npm start     | Inicia a aplicação transpilada    |
+| Script | Comando       | Descrição                              |
+| ------ | ------------- | -------------------------------------- |
+| dev    | npm run dev   | Executa em modo desenvolvimento        |
+| build  | npm run build | Transpila o projeto para produção      |
+| start  | npm start     | Inicia a aplicação transpilada         |
+| test   | npm test      | Executa os testes com Jest e supertest |
 
 ### 5️⃣ Acesso às Aplicações
 
