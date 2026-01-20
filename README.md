@@ -40,7 +40,7 @@ O projeto foi criado com foco em boas práticas de arquitetura, containerizaçã
 ⚙️ Variáveis de Ambiente
 Crie um arquivo .env na raiz do projeto:
 
-PORT=
+PORT=  
 ENV=
 DATABASE_USER=
 DATABASE_HOST=
