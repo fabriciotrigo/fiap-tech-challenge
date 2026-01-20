@@ -19,4 +19,11 @@ describe('Postagem API', () => {
     expect(Array.isArray(response.body)).toBe(true)
   })
 
+  it('deve buscar a postagem de id = 1', async () => {
+    const response = await request(app.server)
+      .get('/postagem/1')
+    
+    expect(response.status).toBe(200)
+  })
+
 })

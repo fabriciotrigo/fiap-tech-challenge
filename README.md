@@ -51,8 +51,10 @@ O projeto segue a seguinte separação de responsabilidades:
 │   ├── utils/  
 │   ├── app.ts
 │   └── server.ts  
+├── tests/  
 ├── Dockerfile  
 ├── docker-compose.yml  
+├── jest.config.js
 ├── package.json  
 ├── tsconfig.json  
 └── README.md  
