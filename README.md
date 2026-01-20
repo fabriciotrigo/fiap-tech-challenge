@@ -1,4 +1,4 @@
-# Blog Educacional – API REST
+# Blog Educacional
 ## Tech Challenge 2 – Pós Tech FIAP - 7FSDT
 
 ---
@@ -33,8 +33,9 @@ O projeto segue a seguinte separação de responsabilidades:
 - **Use Cases**: regras de negócio
 - **Repositories**: acesso ao banco de dados
 
-.
-├── .github/ </br>
+```
+. 
+├── .github/ 
 │   └── workflows/  
 │       └── main.yml  
 ├── docker/  
@@ -55,6 +56,7 @@ O projeto segue a seguinte separação de responsabilidades:
 ├── package.json  
 ├── tsconfig.json  
 └── README.md  
+```
 
 ---
 
@@ -119,7 +121,6 @@ docker-compose up
   volumes:  
     - postgres_data:/var/lib/postgresql/data
 
-
 ### 4️⃣ Execução Manual (Desenvolvimento)
 
 Na raíz do projeto:
@@ -129,12 +130,6 @@ npm install
 npm run dev
 ```
 
-### 5️⃣ Acesso às Aplicações
-
--   **API**: http://localhost:3000 ou https://blog-tech2.onrender.com
--   **Documentação Swagger**: http://localhost:3000/docs ou https://blog-tech2.onrender.com/docs
-
-
 #### ⚙️ Scripts Disponíveis
 
 | Script | Comando       | Descrição                         |
@@ -143,6 +138,11 @@ npm run dev
 | build  | npm run build | Transpila o projeto para produção |
 | start  | npm start     | Inicia a aplicação transpilada    |
 
+### 5️⃣ Acesso às Aplicações
+
+-   **API**: http://localhost:3000 ou https://blog-tech2.onrender.com
+-   **Documentação Swagger**: http://localhost:3000/docs ou https://blog-tech2.onrender.com/docs
+
 ---
 
 ## 🔁 CI/CD com GitHub Actions
@@ -150,18 +150,18 @@ npm run dev
   - Executa o build
   - Cria a imagem Docker
   - Publica a imagem no Docker Hub: https://hub.docker.com/repository/docker/fabriciotrigo/blog-tech2/general 
-  - As credenciais são gerenciadas via GitHub Secrets.
+  - As credenciais são gerenciadas via GitHub Secrets
 
 ### Deploy
   - API hospedada via Render: https://blog-tech2.onrender.com 
   - Banco PostgreSQL gerenciado pelo Render
-  - Imagem Docker pública no Docker Hub
+  - O Render utiliza a imagem do Docker Hub como base para criação dos containers de execução
 
 ---
 
 ## 📌 Desafios  
 
-Particularmente 
+Particularmente, por tratarem-se de tecnologias com as quais eu ainda não havia tido contato na prática (como: Docker, desenvolvimento de APIs, GitHub Actions), essa segunda fase foi bastante desafiadora. Toda a parte para entendimento de alguns conceitos (como criação de imagens no docker, containers, estrutura e separação de responsabilidades conforme desenvolvimento do código) e escrita dos arquivos Dockerfile, docker-compose.yml e main.yml (github/workflows/) exigiu tempo de pesquisa e estudo.
 
 👤 Autor </br>
 Fabricio Boschette Trigo
