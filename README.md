@@ -40,13 +40,13 @@ O projeto foi criado com foco em boas práticas de arquitetura, containerizaçã
 ⚙️ Variáveis de Ambiente
 Crie um arquivo .env na raiz do projeto:
 
-PORT=3000
-ENV=development
-DATABASE_USER=user
-DATABASE_HOST=postgres
-DATABASE_NAME=teste
-DATABASE_PASSWORD=123456
-DATABASE_PORT=5432
+PORT=
+ENV=
+DATABASE_USER=
+DATABASE_HOST=
+DATABASE_NAME=
+DATABASE_PASSWORD=
+DATABASE_PORT=
 ⚠️ Nunca suba o arquivo .env para o repositório.
 
 🐳 Executando com Docker Compose (Recomendado)
