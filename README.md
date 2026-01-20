@@ -1,41 +1,54 @@
-FIAP Pós-Tech - Full Stack Development (7FSDT)
-Fase 2 - Tech Challenge
+# Blog Educacional – API REST
+## Tech Challenge 2 – Pós Tech FIAP - 7FSDT
 
-# Blog Tech 2 🚀
+---
 
-API REST para um blog técnico, desenvolvida com **Node.js**, **Fastify**, **TypeScript** e **PostgreSQL**, utilizando **Docker**, **Docker Compose** e **CI/CD com GitHub Actions**.
+## 📌 Descrição do Projeto
+
+Sistema desenvolvido para o Tech Challenge da Fase 2. Aplicação de blogging educacional para permitir a criação, edição, exclusão e visualização de postagens por meio de uma API RESTful.
 
 O projeto foi criado com foco em boas práticas de arquitetura, containerização e deploy em ambiente cloud.
 
 ---
 
-## 🧱 Tecnologias Utilizadas
+## 🖥️ Tecnologias Utilizadas
 
 - **Node.js**
 - **TypeScript**
-- **Fastify**
-- **PostgreSQL**
-- **Docker & Docker Compose**
-- **Zod** (validação de variáveis de ambiente)
-- **GitHub Actions (CI/CD)**
+- **Fastify** (para criação de API)
+- **PostgreSQL** (banco relacional para persistência de dados)
+- **Zod** (validação e tipagem)
+- **Swagger / OpenAPI** (documentação da API)
+- **Docker & Docker Compose** (containerização)
+- **GitHub Actions (CI/CD)** (automação de deploy)
+- **Render (Cloud Hosting)** (simulação de deploy em produção)
 
 ---
 
 ## 📁 Estrutura do Projeto
+
+O projeto segue a seguinte separação de responsabilidades:
+
+- **Controllers**: lidam com HTTP (request/response)
+- **Use Cases**: regras de negócio
+- **Repositories**: acesso ao banco de dados
+
 .
-├── .github/
-|   └── workflows/  
+├── .github/ </br>
+│   └── workflows/  
 │       └── main.yml  
+├── docker/  
+│   └── init.sql  
 ├── src/  
 │   ├── entities/  
-|   ├── env/  
+│   ├── env/  
 │   ├── http/  
 │   │   └── controllers/   
 │   ├── lib/  
-|   ├── respositories/  
-|   ├── use-cases/  
-|   ├── utils/  
-|   ├── app.ts
+│   ├── respositories/  
+│   ├── use-cases/  
+│   ├── utils/  
+│   ├── app.ts
 │   └── server.ts  
 ├── Dockerfile  
 ├── docker-compose.yml  
@@ -43,9 +56,46 @@ O projeto foi criado com foco em boas práticas de arquitetura, containerizaçã
 ├── tsconfig.json  
 └── README.md  
 
-⚙️ Variáveis de Ambiente
-Crie um arquivo .env na raiz do projeto:
+---
 
+## 📝 Guia de Uso da API  
+
+| Método   | Endpoint                      | Descrição                   |
+| -------- | ----------------------------- | --------------------------- |
+| `GET`    | `/postagem`                   | Lista todos os posts        |
+| `GET`    | `/postagem/:id`               | Busca post pelo ID          |
+| `GET`    | `/postagem/search?q=texto`    | Busca posts pelo texto      |
+| `POST`   | `/postagem`                   | Cria novo post              |
+| `PUT`    | `/postagem/:id`               | Atualiza post existente     |
+| `DELETE` | `/postagem/:id`               | Remove um post              |
+
+- **A documentação da API é gerada automaticamente com Swagger:**
+- http://localhost:3000/docs ou 
+- https://blog-tech2.onrender.com/docs 
+
+---
+
+## 📝 Guia de Instalação e Execução
+
+### Pré-requisitos
+
+-   **Node.js** v20+
+-   **Docker & Docker Compose** (para backend e banco)
+-   **PostgreSQL** (ou usar via Docker)
+-   **Git**
+
+### 1️⃣ Clone o Repositório
+
+```bash
+git clone https://github.com/fabriciotrigo/fiap-tech-challenge.git 
+cd fiap-tech-challenge
+```
+
+### 2️⃣ Configuração das Variáveis de Ambiente
+
+Crie e configure um arquivo .env na raíz do projeto da mesma forma como demonstrado em .env.example:
+
+```bash
 PORT=  
 ENV=  
 DATABASE_USER=  
@@ -53,67 +103,65 @@ DATABASE_HOST=
 DATABASE_NAME=  
 DATABASE_PASSWORD=  
 DATABASE_PORT=  
-⚠️ Nunca suba o arquivo .env para o repositório.
+```
 
-🐳 Executando com Docker Compose (Recomendado)
-1️⃣ Subir aplicação + banco
-docker compose up
-2️⃣ Acessar a API
-http://localhost:3000
-🐘 Banco de Dados
-O PostgreSQL roda em container
+### 3️⃣ Execução com Docker 
 
-O script init.sql é executado automaticamente na primeira inicialização
+```bash
+# Inicia todos os serviços
+docker-compose up 
+```
 
-Os dados são persistidos via volume Docker
+#### 🐘 Banco de Dados
+- O PostgreSQL roda em container
+- O script ./docker/init.sql é executado automaticamente na primeira inicialização
+- Os dados são persistidos via volume Docker  
+  volumes:  
+    - postgres_data:/var/lib/postgresql/data
 
-volumes:
-  - postgres_data:/var/lib/postgresql/data
-🧪 Ambiente de Desenvolvimento
+
+### 4️⃣ Execução Manual (Desenvolvimento)
+
+Na raíz do projeto:
+
+```bash
 npm install
 npm run dev
-🏗️ Build para Produção
-npm run build
-npm start
-📦 Scripts Disponíveis
-Script	Descrição
-dev	Executa em modo desenvolvimento
-build	Compila o projeto para produção
-start	Inicia a aplicação compilada
-🔁 CI/CD com GitHub Actions
-O projeto conta com pipeline automatizado que:
+```
 
-Executa o build
+### 5️⃣ Acesso às Aplicações
 
-Cria a imagem Docker
+-   **API**: http://localhost:3000 ou https://blog-tech2.onrender.com
+-   **Documentação Swagger**: http://localhost:3000/docs ou https://blog-tech2.onrender.com/docs
 
-Publica a imagem no Docker Hub
 
-As credenciais são gerenciadas via GitHub Secrets.
+#### ⚙️ Scripts Disponíveis
 
-☁️ Deploy
-API hospedada via Render
+| Script | Comando       | Descrição                         |
+| ------ | ------------- | ----------------------------------|
+| dev    | npm run dev   | Executa em modo desenvolvimento   |
+| build  | npm run build | Transpila o projeto para produção |
+| start  | npm start     | Inicia a aplicação transpilada    |
 
-Banco PostgreSQL gerenciado pelo Render
+---
 
-Imagem Docker pública no Docker Hub
+## 🔁 CI/CD com GitHub Actions
+### O projeto conta com pipeline automatizado que:
+  - Executa o build
+  - Cria a imagem Docker
+  - Publica a imagem no Docker Hub: https://hub.docker.com/repository/docker/fabriciotrigo/blog-tech2/general 
+  - As credenciais são gerenciadas via GitHub Secrets.
 
-📌 Boas Práticas Aplicadas
-Multi-stage build no Dockerfile
+### Deploy
+  - API hospedada via Render: https://blog-tech2.onrender.com 
+  - Banco PostgreSQL gerenciado pelo Render
+  - Imagem Docker pública no Docker Hub
 
-Separação de ambiente (dev / prod)
+---
 
-Validação de variáveis de ambiente com Zod
+## 📌 Desafios  
 
-Persistência de dados com volumes
+Particularmente 
 
-Healthcheck no banco
-
-CI/CD automatizado
-
-👨‍💻 Autor
-Fabrício Boschette Trigo
-
-GitHub: https://github.com/fabriciotrigo/fiap-tech-challenge  
-
-Docker Hub: https://hub.docker.com/repositories/fabriciotrigo  
+👤 Autor </br>
+Fabricio Boschette Trigo
