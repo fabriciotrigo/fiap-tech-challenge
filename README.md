@@ -149,7 +149,7 @@ npm run dev
 ### O projeto conta com pipeline automatizado que:
   - Executa o build
   - Cria a imagem Docker
-  - Publica a imagem no Docker Hub: https://hub.docker.com/repository/docker/fabriciotrigo/blog-tech2/general 
+  - Publica a imagem no Docker Hub
   - As credenciais são gerenciadas via GitHub Secrets
 
 ### Deploy
