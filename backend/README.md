@@ -46,7 +46,7 @@ O projeto segue a seguinte separação de responsabilidades:
 │   ├── http/  
 │   │   └── controllers/   
 │   ├── lib/  
-│   ├── respositories/  
+│   ├── repositories/  
 │   ├── use-cases/  
 │   ├── utils/  
 │   ├── app.ts

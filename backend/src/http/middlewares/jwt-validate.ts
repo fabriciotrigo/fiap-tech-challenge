@@ -7,8 +7,10 @@ export async function validateJwt(
   try {
     const route = request.routeOptions.url
     const method = request.method
+    const url = request.raw.url || ''
 
-    if ((route === '/users' || route === '/users/signin' ) && method === 'POST') return
+    if (((route === '/users' || route === '/users/signin' ) && method === 'POST')
+       || url.startsWith('/docs')) return
 
     await request.jwtVerify()
 
