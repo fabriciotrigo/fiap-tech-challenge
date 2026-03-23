@@ -125,7 +125,7 @@ export default function PostagensPage() {
 
     <div className="max-w-4xl mx-auto p-6">
 
-      <div className = "flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold mb-6">
           Postagens
         </h1>
@@ -135,7 +135,7 @@ export default function PostagensPage() {
           placeholder="Buscar..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border p-2 rounded w-64"
+          className="input w-72"
         />
       </div>
 
@@ -149,14 +149,14 @@ export default function PostagensPage() {
 
           <div
             key={postagem.id}
-            className="border-0 p-4 rounded shadow-sm"
+            className="bg-gray-100 p-6 rounded-lg shadow-md"
           >
 
             <h2 className="text-xl font-semibold">
               {postagem.disciplina}
             </h2>
 
-            <p className="text-gray-700 mt-2">
+            <p className="text-gray-700 mt-2 line-clamp-1">
               {postagem.texto_postagem}
             </p>
 
@@ -165,19 +165,18 @@ export default function PostagensPage() {
             </p>
 
             <div className="flex gap-2 mt-2">
-              {user?.nivel === 1 && (
-                <button
-                  onClick={() => router.push(`/postagem/editar/${postagem.id}`)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 hover:cursor-pointer"
-                >
-                  Editar
-                </button>
-              )}
+              <button
+                onClick={() => router.push(`/postagem/editar/${postagem.id}`)}
+                className="btn btn-blue px-2 py-1"
+              >
+                {user?.nivel === 1 && ("Editar")}
+                {user?.nivel === 2 && ("Visualizar")}
+              </button>
 
               {user?.nivel === 1 && (
                 <button
                   onClick={() => handleDelete(postagem.id)}
-                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 hover:cursor-pointer"
+                  className="btn btn-red px-2 py-1"
                 >
                   Excluir
                 </button>

@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-gradiente: linear-gradient(to bottom, #f3f4f6, #9ca3af);
 
   /* cores do sistema */
   --primary: #2563eb;
@@ -27,44 +28,38 @@
   --color-danger: var(--danger);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background: var(--bg-gradiente);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded font-medium transition;
+    @apply text-white rounded hover:cursor-pointer;
   }
 
-  .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-600;
   }
 
-  .btn-success {
-    @apply bg-green-500 text-white hover:bg-green-600;
+  .btn-green {
+    @apply bg-green-500 hover:bg-green-600;
   }
 
-  .btn-danger {
-    @apply bg-red-500 text-white hover:bg-red-600;
+  .btn-red {
+    @apply bg-red-500 hover:bg-red-600;
   }
 
-  .btn-outline {
-    @apply border border-gray-300 hover:bg-gray-100;
+  .btn-gray {
+    @apply bg-gray-500 hover:bg-gray-600;
   }
 }
 
 @layer components {
   .input {
-    @apply w-full border border-gray-300 p-2 rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400;
+    @apply w-full bg-white border-0 p-2 mb-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-400;
   }
 }
 

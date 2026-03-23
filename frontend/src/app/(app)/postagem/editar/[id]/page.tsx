@@ -7,7 +7,7 @@ import { useAuth } from "../../../../../contexts/AuthContext"
 
 export default function EditPostPage() {
 
-  const { getToken } = useAuth()
+  const { user, getToken } = useAuth()
   const { id } = useParams()
   const router = useRouter()
 
@@ -104,33 +104,38 @@ export default function EditPostPage() {
             placeholder="Disciplina"
             value={disciplina}
             onChange={(e) => setDisciplina(e.target.value)}
-            className="w-full border p-2 mb-4 rounded"
+            className="input"
+            disabled={user?.nivel!==1}
         />
 
         <textarea
             placeholder="Conteúdo da postagem"
             value={texto_postagem}
             onChange={(e) => setTexto(e.target.value)}
-            className="w-full border p-2 mb-4 rounded"
+            className="h-100 input"
+            disabled={user?.nivel!==1}
         />
 
-        <p className="text-sm text-gray-500 mt-2">
+        <p className="text-sm text-gray-500 p-2 mb-4">
             Autor: {autor}
         </p>
 
         <div className="flex gap-2 mt-2">
-            <button
-                type="submit"
-                className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 hover:cursor-pointer"
-            >
-                Salvar
-            </button>
+            {user?.nivel === 1 && (
+                <button
+                    type="submit"
+                    className="btn btn-blue px-2 py-1"
+                >
+                    Salvar
+                </button>
+            )}
             <button
                 type="button"
-                className="bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600 hover:cursor-pointer"
-                onClick={() => router.back()}
+                className="btn btn-gray px-2 py-1"
+                onClick={() => router.push("/postagem")}
             >
-                Cancelar
+                {user?.nivel === 1 && ("Cancelar")}
+                {user?.nivel === 2 && ("Voltar")}
             </button>
         </div>
 

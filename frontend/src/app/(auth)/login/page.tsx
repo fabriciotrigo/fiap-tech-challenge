@@ -45,17 +45,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-400">
+    <div className="flex flex-col items-center justify-center min-h-screen">
     
       <form
         onSubmit={handleLogin}
-        className="bg-gray-300 p-8 rounded-lg shadow-md w-96"
+        className="bg-gray-100 p-8 rounded-lg shadow-md w-96"
       >
         <div className="flex flex-col items-center justify-center mb-6">
           <Image src="/logo_blog.png"
             alt="Logo"
-            width={500}
-            height={500} 
+            width={1000}
+            height={1000} 
           />
         </div>
 
@@ -64,23 +64,33 @@ export default function LoginPage() {
           placeholder="Usuário"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full bg-white border-0 p-2 mb-4 rounded"
+          className="input" //w-full bg-white border-0 p-2 mb-4 rounded"
         />
         <input
           type="password"
           placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-white border-0 p-2 mb-6 rounded"
+          className="input" //w-full bg-white border-0 p-2 mb-6 rounded"
         />
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 hover:cursor-pointer"
+          className="btn btn-blue w-full p-2"
           disabled={(username == '' || password == '')}
         >
           Entrar
         </button>
+
+        <p className="text-sm text-center mt-4">
+          Não tem conta?{" "}
+          <span
+            onClick={() => router.push("/register")}
+            className="text-blue-600 cursor-pointer hover:underline"
+          >
+            Cadastre-se
+          </span>
+        </p>
 
       </form>
     </div>

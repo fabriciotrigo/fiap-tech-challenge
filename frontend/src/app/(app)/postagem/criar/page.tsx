@@ -85,20 +85,20 @@ export default function CriarPostagemPage() {
                 placeholder="Disciplina"
                 value={disciplina}
                 onChange={(e) => setDisciplina(e.target.value)}
-                className="w-full border p-2 rounded"
+                className="input"
             />
 
             <textarea
                 placeholder="Digite o conteúdo da postagem..."
                 value={texto}
                 onChange={(e) => setTexto(e.target.value)}
-                className="w-full border p-2 rounded h-40"
+                className="h-100 input"
             />
 
             <div className="flex gap-2">
                 <button
                     type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hover:cursor-pointer"
+                    className="btn btn-green px-2 py-1"
                     disabled={!disciplina || !texto}
                 >
                     Criar
@@ -106,8 +106,8 @@ export default function CriarPostagemPage() {
 
                 <button
                     type="button"
-                    onClick={() => router.back()}
-                    className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 hover:cursor-pointer"
+                    onClick={() => router.push("/postagem")}
+                    className="btn btn-gray px-2 py-1"
                 >
                     Cancelar
                 </button>

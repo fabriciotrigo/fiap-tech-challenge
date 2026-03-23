@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 //import { useState } from "react"
 //import { getUser } from "../utils/auth"
 import { useAuth } from "@/contexts/AuthContext"
+import Image from "next/image"
 
 export function Header() {
 
@@ -27,12 +28,13 @@ export function Header() {
     <header className="bg-white shadow px-6 py-3 flex justify-between items-center">
 
       {/* Logo / Nome */}
-      <h1
+      <Image src="/logo_blog.png"
+        alt="Logo"
+        width={100}
+        height={100} 
         onClick={() => router.push("/postagem")}
-        className="text-xl font-bold cursor-pointer"
-      >
-        Blog Educacional
-      </h1>
+        className="cursor-pointer"
+      />
 
       {/* Busca
       <input
@@ -52,7 +54,7 @@ export function Header() {
             <button
                 type="button"
                 onClick={() => router.push("/postagem/criar")}
-                className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 hover:cursor-pointer"
+                className="btn btn-green px-3 py-1"
             >
                 + Criar Postagem
             </button>
@@ -61,7 +63,7 @@ export function Header() {
         <button
             type="button"
             onClick={logout}
-            className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 hover:cursor-pointer"
+            className="btn btn-gray px-3 py-1"
         >
             Sair
         </button>
