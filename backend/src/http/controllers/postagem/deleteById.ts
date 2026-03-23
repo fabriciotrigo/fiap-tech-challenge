@@ -16,5 +16,7 @@ export async function deleteById(request: FastifyRequest, reply: FastifyReply) {
 
     const postagem = await deleteByIdPostagemUseCase.handler(id)
 
-    return reply.status(200).send(postagem)
+    return reply.status(204).send(
+        
+    )
 }

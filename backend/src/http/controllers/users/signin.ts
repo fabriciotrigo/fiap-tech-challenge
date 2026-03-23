@@ -1,14 +1,14 @@
 import { InvalidCredentialsError } from '../../../use-cases/errors/invalid-credentials-error'
-import { SigninUseCase } from "../../../use-cases/signin";
+import { SigninUseCase } from "../../../use-cases/signin"
 import { compare } from 'bcryptjs'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { UsersRepository } from '../../../repositories/users.repository';
+import { UsersRepository } from '../../../repositories/users.repository'
 
 export async function signin(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
     username: z.string(),
-    password: z.string(),
+    password: z.string()
   })
 
   const { username, password } = registerBodySchema.parse(request.body)
@@ -25,7 +25,10 @@ export async function signin(request: FastifyRequest, reply: FastifyReply) {
     throw new InvalidCredentialsError()
   }
 
-  const token = await reply.jwtSign({ username })
+  const token = await reply.jwtSign({ 
+    username: user.username,
+    nivel: user.nivel 
+  })
 
   return reply.status(200).send({ token })
 }

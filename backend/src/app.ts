@@ -1,7 +1,7 @@
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import { fastify } from "fastify";
-//import { cors } from "fastify-cors";
+import cors from "@fastify/cors";
 import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider } from "fastify-type-provider-zod";
 import { postagemRoutes } from "./http/controllers/postagem/routes";
 import { usersRoutes } from "./http/controllers/users/routes";
@@ -12,9 +12,10 @@ import { env } from "./env";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
-/*app.register(cors, {
-  origin: '*'
-})*/
+app.register(cors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+})
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,

@@ -2,10 +2,14 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
+import { toast } from 'react-toastify';
+import { useAuth } from "../../../contexts/AuthContext"
 
 export default function LoginPage() {
 
   const router = useRouter()
+  const { login } = useAuth()
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -28,61 +32,57 @@ export default function LoginPage() {
     const data = await response.json()
 
     if (data.token) {
-      localStorage.setItem("token", data.token)
+      //localStorage.setItem("token", data.token)
+      login(data.token)
       router.push("/postagem")
     } else {
-      alert("Usuário ou senha inválidos")
+      toast.error("Usuário ou senha inválidos", {
+        position: "top-center",
+        closeOnClick: true
+      })
     }
 
   }
 
   return (
-
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-400">
+    
       <form
         onSubmit={handleLogin}
-        className="bg-white p-8 rounded-lg shadow-md w-96"
+        className="bg-gray-300 p-8 rounded-lg shadow-md w-96"
       >
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          Login
-        </h1>
+        <div className="flex flex-col items-center justify-center mb-6">
+          <Image src="/logo_blog.png"
+            alt="Logo"
+            width={500}
+            height={500} 
+          />
+        </div>
 
         <input
           type="text"
           placeholder="Usuário"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full border p-2 mb-4 rounded"
+          className="w-full bg-white border-0 p-2 mb-4 rounded"
         />
         <input
           type="password"
           placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full border p-2 mb-6 rounded"
+          className="w-full bg-white border-0 p-2 mb-6 rounded"
         />
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 hover:cursor-pointer"
+          disabled={(username == '' || password == '')}
         >
           Entrar
         </button>
 
       </form>
     </div>
-
   )
 }
-/*
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <
-      </main>
-    </div>
-  );
-}
-*/
