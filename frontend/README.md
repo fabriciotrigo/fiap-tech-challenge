@@ -42,6 +42,7 @@ Este frontend permite que professores e alunos interajam com a plataforma de blo
 │   │   │   │   ├── postagem/
 │   │   │   │   │   ├── criar/
 │   │   │   │   │   ├── editar/
+│   │   │   │   │   │   └──[id]/
 │   │   │   │   │   └── page.tsx
 │   │   │   │   └── layout.tsx
 │   │   │   ├── (auth)/
