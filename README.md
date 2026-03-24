@@ -35,7 +35,7 @@ O sistema consiste em uma plataforma de blog educacional onde:
 
 ## ⚙️ Como executar o projeto
 
-### 🔹 1. Clonar repositório
+### 1️⃣ Clonar repositório
 ```bash
 git clone https://github.com/fabriciotrigo/fiap-tech-challenge.git 
 cd fiap-tech-challenge
@@ -43,7 +43,7 @@ cd fiap-tech-challenge
 
 ---
 
-### 🔹 2. Configuração das Variáveis de Ambiente do Backend
+### 2️⃣ Configuração das Variáveis de Ambiente do Backend
 
 Crie e configure um arquivo .env na raíz do projeto da mesma forma como demonstrado em ./backend/.env.example:
 
@@ -58,7 +58,7 @@ DATABASE_PORT=
 JWT_SECRET= 
 ```
 
-### 🔹 3. Configuração da Variável de Ambiente do Frontend
+### 3️⃣ Configuração da Variável de Ambiente do Frontend
 
 Para execução com docker crie um arquivo .env.production na pasta ./frontend com o conteúdo abaixo:
 
@@ -68,13 +68,13 @@ NETX_PUBLIC_API_URL=http://api:3000
 
 ---
 
-### 🔹 4. Subir com Docker
+### 4️⃣ Subir com Docker
 ```bash
 docker-compose up --build
 ```
 ---
 
-### 🔹 5. Acessar aplicações
+### 5️⃣ Acessar aplicações
 
 - Backend:  http://localhost:3000
 - Swagger:  http://localhost:3000/docs
