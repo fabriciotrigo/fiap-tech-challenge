@@ -52,7 +52,7 @@ Este frontend permite que professores e alunos interajam com a plataforma de blo
 │   │   │   ├── layout.tsx
 │   │   │   └── page.tsx
 │   │   ├── components/
-│   │   └── contexts/
+│   │   ├── contexts/
 │   │   └── lib/
 │   ├── Dockerfile
 │   ├── eslint.config.mjs
@@ -83,9 +83,10 @@ npm install
 npm run dev
 
 Aplicação disponível em: http://localhost:3001
+
 Para pleno funcionamento o backend deverá estar em execução: http://localhost:3000
 
-Para execução local crie um arquivo .env.local na pasta ./frontend:
+Para execução local crie um arquivo .env.local na pasta ./frontend com o conteúdo abaixo:
 
 ```bash
 NETX_PUBLIC_API_URL=http://localhost:3000
@@ -130,6 +131,4 @@ A aplicação consome as seguintes rotas (backend):
 
 ## 👨‍💻 Autor
 
-Fabrício Trigo
-
-Projeto desenvolvido para Pós-graduação.
+Fabrício Boschette Trigo - RM368000

@@ -16,12 +16,15 @@ O sistema consiste em uma plataforma de blog educacional onde:
 ---
 
 ## 📁 Arquitetura
+
+```
 . 
 ├── .github/ 
 ├── [backend](./backend/README.md)/ → API REST 
 ├── [frontend](./frontend/README.md)/ → Interface web 
 ├── docker-compose.yml
 └── README.md
+```
 
 ---
 
@@ -58,9 +61,10 @@ docker-compose up --build
 ---
 
 ### 🔹 4. Acessar aplicações
-Backend:  http://localhost:3000
-Swagger: http://localhost:3000/docs
-Frontend:  http://localhost:3001
+
+- Backend:  http://localhost:3000
+- Swagger:  http://localhost:3000/docs
+- Frontend:  http://localhost:3001
 
 ---
 
@@ -108,5 +112,6 @@ Após login:
 
 ---
 
-## 👨‍💻 Autor </br>
+## 👨‍💻 Autor 
+
 Fabrício Boschette Trigo - RM368000
