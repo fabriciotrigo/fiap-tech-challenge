@@ -58,7 +58,7 @@ DATABASE_PORT=
 JWT_SECRET= 
 ```
 
-### 3. Configuração da Variável de Ambiente do Frontend
+### 🔹 3. Configuração da Variável de Ambiente do Frontend
 
 Para execução com docker crie um arquivo .env.production na pasta ./frontend com o conteúdo abaixo:
 
@@ -68,13 +68,13 @@ NETX_PUBLIC_API_URL=http://api:3000
 
 ---
 
-### 🔹 3. Subir com Docker
+### 🔹 4. Subir com Docker
 ```bash
 docker-compose up --build
 ```
 ---
 
-### 🔹 4. Acessar aplicações
+### 🔹 5. Acessar aplicações
 
 - Backend:  http://localhost:3000
 - Swagger:  http://localhost:3000/docs
