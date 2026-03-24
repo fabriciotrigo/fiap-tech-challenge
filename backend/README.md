@@ -172,5 +172,6 @@ npm run dev
 
 Particularmente, por tratarem-se de tecnologias com as quais eu ainda não havia tido contato na prática (como: Docker, desenvolvimento de APIs, GitHub Actions), essa segunda fase foi bastante desafiadora. Toda a parte para entendimento de alguns conceitos (como criação de imagens no docker, containers, estrutura e separação de responsabilidades conforme desenvolvimento do código) e escrita dos arquivos Dockerfile, docker-compose.yml e main.yml (github/workflows/) exigiu tempo de pesquisa e estudo.
 
-👤 Autor </br>
-Fabricio Boschette Trigo
+## 👨‍💻 Autor
+
+Fabrício Boschette Trigo - RM368000

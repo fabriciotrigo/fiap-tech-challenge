@@ -27,8 +27,9 @@ O sistema consiste em uma plataforma de blog educacional onde:
 └── README.md
 ```
 
-[backend/README](./backend/README.md)/
-[frontend/README](./frontend/README.md)/
+[backend/README](./backend/README.md)
+
+[frontend/README](./frontend/README.md)
 
 ---
 
@@ -42,7 +43,7 @@ cd fiap-tech-challenge
 
 ---
 
-### 🔹 2. Configuração das Variáveis de Ambiente
+### 🔹 2. Configuração das Variáveis de Ambiente do Backend
 
 Crie e configure um arquivo .env na raíz do projeto da mesma forma como demonstrado em ./backend/.env.example:
 
@@ -55,6 +56,14 @@ DATABASE_NAME=
 DATABASE_PASSWORD=  
 DATABASE_PORT=  
 JWT_SECRET= 
+```
+
+### 3. Configuração da Variável de Ambiente do Frontend
+
+Para execução com docker crie um arquivo .env.production na pasta ./frontend com o conteúdo abaixo:
+
+```bash
+NETX_PUBLIC_API_URL=http://api:3000
 ```
 
 ---

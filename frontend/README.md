@@ -98,6 +98,12 @@ Para execução local crie um arquivo .env.local na pasta ./frontend com o conte
 NETX_PUBLIC_API_URL=http://localhost:3000
 ```
 
+Para execução com docker crie um arquivo .env.production na pasta ./frontend com o conteúdo abaixo:
+
+```bash
+NETX_PUBLIC_API_URL=http://api:3000
+```
+
 ---
 
 ## 🔐 Autenticação
