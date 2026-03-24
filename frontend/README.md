@@ -20,8 +20,9 @@ Este frontend permite que professores e alunos interajam com a plataforma de blo
 
 ## 🚀 Tecnologias utilizadas
 
+- React
 - Next.js 16
-- Tailwind CSS (para estilização)
+- Tailwind CSS (para estilização e responsividade)
 - React Toastify (para feedback visual ao usuário)
 - JWT (para autenticação de usuário)
 - Docker
