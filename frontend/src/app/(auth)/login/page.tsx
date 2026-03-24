@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { toast } from 'react-toastify';
 import { useAuth } from "../../../contexts/AuthContext"
+import { API_URL } from "../../../lib/api";
 
 export default function LoginPage() {
-
+  
   const router = useRouter()
   const { login } = useAuth()
 
@@ -17,8 +18,8 @@ export default function LoginPage() {
   async function handleLogin(e: any) {
 
     e.preventDefault()
-
-    const response = await fetch("http://localhost:3000/users/signin", {
+    
+    const response = await fetch(`${API_URL}/users/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -54,8 +55,8 @@ export default function LoginPage() {
         <div className="flex flex-col items-center justify-center mb-6">
           <Image src="/logo_blog.png"
             alt="Logo"
-            width={1000}
-            height={1000} 
+            width={300}
+            height={300} 
           />
         </div>
 
@@ -64,14 +65,14 @@ export default function LoginPage() {
           placeholder="Usuário"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="input" //w-full bg-white border-0 p-2 mb-4 rounded"
+          className="input" 
         />
         <input
           type="password"
           placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="input" //w-full bg-white border-0 p-2 mb-6 rounded"
+          className="input" 
         />
 
         <button

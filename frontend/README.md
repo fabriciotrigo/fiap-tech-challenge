@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog Educacional - Frontend
+## Tech Challenge - Fase 3 - Pós Tech FIAP - 7FSDT
 
-## Getting Started
+Interface web da aplicação Blog Educacional, desenvolvida com Next.js e integrada ao backend em Fastify.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📌 Sobre o projeto
+
+Este frontend permite que professores e alunos interajam com a plataforma de blog educacional, possibilitando:
+
+- Login com autenticação JWT
+- Listagem de postagens
+- Criação de postagens (Professor)
+- Edição de postagens (Professor)
+- Exclusão de postagens (Professor)
+- Visualização de postagens (Aluno)
+
+---
+
+## 🚀 Tecnologias utilizadas
+
+- Next.js 16
+- Tailwind CSS (para estilização)
+- React Toastify (para feedback visual ao usuário)
+- JWT (para autenticação de usuário)
+- Docker
+
+---
+
+## 📁 Estrutura de pastas
+
+```
+. 
+├── .github/ 
+├── backend/  
+├── frontend/  
+│   ├── public/
+│   ├── src/  
+│   │   ├── app/
+│   │   │   ├── (app)/
+│   │   │   │   ├── postagem/
+│   │   │   │   │   ├── criar/
+│   │   │   │   │   ├── editar/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── layout.tsx
+│   │   │   ├── (auth)/
+│   │   │   │   ├── login/
+│   │   │   │   └── register/
+│   │   │   ├── favicon.ico
+│   │   │   ├── globals.css
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx
+│   │   ├── components/
+│   │   └── contexts/
+│   │   └── lib/
+│   ├── Dockerfile
+│   ├── eslint.config.mjs
+│   ├── next.config.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.mjs
+│   ├── README.md
+│   └── tsconfig.json
+├── docker-compose.yml  
+└── README.md  
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Como executar o projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/fabriciotrigo/fiap-tech-challenge.git 
+cd fiap-tech-challenge
+cd frontend
+```
 
-## Learn More
+### 1️⃣ Instalar dependências
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+### 2️⃣ Executar o Projeto
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Aplicação disponível em: http://localhost:3001
+Para pleno funcionamento o backend deverá estar em execução: http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para execução local crie um arquivo .env.local na pasta ./frontend:
 
-## Deploy on Vercel
+```bash
+NETX_PUBLIC_API_URL=http://localhost:3000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔐 Autenticação
+
+A aplicação utiliza autenticação baseada em JWT.
+
+Após login, o token é armazenado no localStorage e utilizado nas requisições protegidas.
+
+---
+
+## 👤 Perfis de usuário
+
+### Professor (nível 1)
+
+- Criar postagens
+- Editar postagens
+- Excluir postagens
+
+### Aluno (nível 2)
+
+- Visualizar postagens
+
+---
+
+## 🔗 Integração com Backend
+
+A aplicação consome as seguintes rotas (backend):
+
+- POST /users/signin
+- POST /users
+- GET /postagem
+- POST /postagem
+- PUT /postagem/:id
+- DELETE /postagem/:id
+
+---
+
+## 👨‍💻 Autor
+
+Fabrício Trigo
+
+Projeto desenvolvido para Pós-graduação.

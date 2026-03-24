@@ -1,8 +1,6 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-//import { useState } from "react"
-//import { getUser } from "../utils/auth"
 import { useAuth } from "@/contexts/AuthContext"
 import Image from "next/image"
 
@@ -11,18 +9,6 @@ export function Header() {
   const router = useRouter()
   //const user = getUser()
   const { user, logout } = useAuth()
-  /*const [search, setSearch] = useState("")
-
-  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value
-    setSearch(value)
-    onSearch?.(value) // opcional
-  }*/
-
-  /*function handleLogout() {
-    localStorage.removeItem("token")
-    router.push("/login")
-  }*/
 
   return (
     <header className="bg-white shadow px-6 py-3 flex justify-between items-center">
@@ -35,17 +21,7 @@ export function Header() {
         onClick={() => router.push("/postagem")}
         className="cursor-pointer"
       />
-
-      {/* Busca
-      <input
-        type="text"
-        placeholder="Buscar..."
-        value={search}
-        onChange={handleSearch}
-        className="border p-2 rounded w-64"
-      />
-       */}
-    
+  
       {/* Ações */}
       <div className="flex items-center gap-3">
 

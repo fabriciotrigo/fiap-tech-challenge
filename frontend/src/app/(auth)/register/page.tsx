@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
+import { API_URL } from "../../../lib/api";
 
 export default function RegisterPage() {
 
@@ -17,7 +18,7 @@ export default function RegisterPage() {
 
     try {
 
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch(`${API_URL}/users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

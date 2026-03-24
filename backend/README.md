@@ -1,5 +1,5 @@
-# Blog Educacional
-## Tech Challenge 2 – Pós Tech FIAP - 7FSDT
+# Blog Educacional - Backend
+## Tech Challenge - Fase 2 - Pós Tech FIAP - 7FSDT
 
 ---
 
@@ -18,6 +18,7 @@ O projeto foi criado com foco em boas práticas de arquitetura, containerizaçã
 - **Fastify** (para criação de API)
 - **PostgreSQL** (banco relacional para persistência de dados)
 - **Zod** (validação e tipagem)
+- **JWT** (autenticação e validação de signin)
 - **Swagger / OpenAPI** (documentação da API)
 - **Docker & Docker Compose** (containerização)
 - **GitHub Actions (CI/CD)** (automação de deploy)
@@ -64,14 +65,17 @@ O projeto segue a seguinte separação de responsabilidades:
 
 ## 📝 Guia de Uso da API  
 
-| Método   | Endpoint                      | Descrição                   |
-| -------- | ----------------------------- | --------------------------- |
-| `GET`    | `/postagem`                   | Lista todos os posts        |
-| `GET`    | `/postagem/:id`               | Busca post pelo ID          |
-| `GET`    | `/postagem/search?q=texto`    | Busca posts pelo texto      |
-| `POST`   | `/postagem`                   | Cria novo post              |
-| `PUT`    | `/postagem/:id`               | Atualiza post existente     |
-| `DELETE` | `/postagem/:id`               | Remove um post              |
+| Método   | Endpoint                      | Descrição                      |
+| -------- | ----------------------------- | -------------------------------|
+| `GET`    | `/postagem`                   | Lista todos os posts           |
+| `GET`    | `/postagem/:id`               | Busca post pelo ID             |
+| `GET`    | `/postagem/search?q=texto`    | Busca posts pelo texto         |
+| `POST`   | `/postagem`                   | Cria novo post                 |
+| `PUT`    | `/postagem/:id`               | Atualiza post existente        |
+| `DELETE` | `/postagem/:id`               | Remove um post                 |
+| `POST`   | `/users`                      | Cria novo usuário              |
+| `POST`   | `/users/signin`               | Realiza login (gera token JWT) |
+| `GET`    | `/user/:username`             | Busca usuário                  |
 
 - **A documentação da API é gerada automaticamente com Swagger:**
 - http://localhost:3000/docs ou 
@@ -93,6 +97,7 @@ O projeto segue a seguinte separação de responsabilidades:
 ```bash
 git clone https://github.com/fabriciotrigo/fiap-tech-challenge.git 
 cd fiap-tech-challenge
+cd backend
 ```
 
 ### 2️⃣ Configuração das Variáveis de Ambiente
@@ -107,6 +112,7 @@ DATABASE_HOST=
 DATABASE_NAME=  
 DATABASE_PASSWORD=  
 DATABASE_PORT=  
+JWT_SECRET= 
 ```
 
 ### 3️⃣ Execução com Docker 

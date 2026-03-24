@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { useAuth } from "@/contexts/AuthContext"
+import { API_URL } from "../../../../lib/api";
 
 export default function CriarPostagemPage() {
 
@@ -37,7 +38,7 @@ export default function CriarPostagemPage() {
         if (!token) return
 
         try {
-            const response = await fetch("http://localhost:3000/postagem", {
+            const response = await fetch(`${API_URL}/postagem`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

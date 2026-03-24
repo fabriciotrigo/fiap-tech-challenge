@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-//import { getUser } from "../../../utils/auth"
 import { toast } from 'react-toastify';
 import { useAuth } from "../../../contexts/AuthContext"
-
-//const user = getUser()
+import { API_URL } from "../../../lib/api";
 
 type Postagem = {
   id: number
@@ -55,7 +53,7 @@ export default function PostagensPage() {
 
     try {
 
-      const response = await fetch("http://localhost:3000/postagem", {
+      const response = await fetch(`${API_URL}/postagem`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -87,7 +85,7 @@ export default function PostagensPage() {
 
     if (!confirmDelete) return
 
-    const response = await fetch(`http://localhost:3000/postagem/${id}`, {
+    const response = await fetch(`${API_URL}/postagem/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`

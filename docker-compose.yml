@@ -1,14 +1,23 @@
 services:
   api:
-    build: .
-    image: blog-tech2
+    build: ./backend
+    image: blog-educacional
+    container_name: backend
     ports:
       - "${PORT}:3000"
     env_file:
-      - .env
+      - ./backend/.env
     depends_on:
       postgres:
         condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - api
 
   postgres:
     image: postgres:16-alpine
@@ -25,7 +34,7 @@ services:
       - "${DATABASE_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/docker/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   postgres_data:

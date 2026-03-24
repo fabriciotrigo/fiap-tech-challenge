@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { useAuth } from "../../../../../contexts/AuthContext"
+import { API_URL } from "../../../../../lib/api";
 
 export default function EditPostPage() {
 
@@ -25,7 +26,7 @@ export default function EditPostPage() {
       return
     }
 
-    fetch(`http://localhost:3000/postagem/${id}`, {
+    fetch(`${API_URL}/postagem/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -54,7 +55,7 @@ export default function EditPostPage() {
     if (!token) return
 
     try {
-        const response = await fetch(`http://localhost:3000/postagem/${id}`, {
+        const response = await fetch(`${API_URL}/postagem/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
