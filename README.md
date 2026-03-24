@@ -20,11 +20,15 @@ O sistema consiste em uma plataforma de blog educacional onde:
 ```
 . 
 ├── .github/ 
-├── [backend](./backend/README.md)/ → API REST 
-├── [frontend](./frontend/README.md)/ → Interface web 
+├── backend/ → API REST 
+├── frontend/ → Interface web 
+├── .env
 ├── docker-compose.yml
 └── README.md
 ```
+
+[backend/README](./backend/README.md)/
+[frontend/README](./frontend/README.md)/
 
 ---
 
@@ -56,8 +60,9 @@ JWT_SECRET=
 ---
 
 ### 🔹 3. Subir com Docker
+```bash
 docker-compose up --build
-
+```
 ---
 
 ### 🔹 4. Acessar aplicações

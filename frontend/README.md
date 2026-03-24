@@ -77,10 +77,16 @@ cd frontend
 ```
 
 ### 1️⃣ Instalar dependências
+
+```bash
 npm install
+```
 
 ### 2️⃣ Executar o Projeto
+
+```bash
 npm run dev
+```
 
 Aplicação disponível em: http://localhost:3001
 
