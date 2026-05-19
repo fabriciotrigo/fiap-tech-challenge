@@ -19,4 +19,34 @@ export class UsersRepository {
 
         return result?.rows[0]
     }
+
+    public async findByNivel(nivel: number): Promise<Users[] | undefined> {
+        const result = await database.clientInstance?.query<Users>(
+            `SELECT * FROM users WHERE users.nivel = $1`,
+            [nivel]
+        )
+
+        return result?.rows ?? [ ]
+    }
+
+    public async deleteUsers(id: number): Promise<boolean> {
+        const result = await database.clientInstance?.query<Users>(
+            `DELETE FROM users u WHERE u.id = $1`,
+            [id]
+        )
+
+        return (result?.rowCount ?? 0) > 0
+    }
+
+    public async updateUsers({ id, nivel}: {id: number, nivel: number}): Promise<Users | undefined> {
+        const result = await database.clientInstance?.query<Users>(
+            `UPDATE users
+                SET nivel = $2
+              WHERE id = $1
+              RETURNING *`,
+            [id, nivel]
+        )
+
+        return result?.rows[0]
+    }
 }
